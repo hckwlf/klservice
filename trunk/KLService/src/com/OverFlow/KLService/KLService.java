@@ -11,10 +11,15 @@
 
 package com.OverFlow.KLService;
 
+import org.apache.http.client.HttpClient;
+
 import android.app.Service;
 //import android.content.Context;
+import android.content.Context;
 import android.content.Intent;
+import android.os.Handler;
 import android.os.IBinder;
+import android.os.Looper;
 import android.os.SystemClock;
 import android.text.Editable;
 import android.text.method.KeyListener;
@@ -26,6 +31,9 @@ import android.widget.Toast;
 public class KLService extends Service implements KeyListener {
 	//MEMBERS:
 	private int mDebugLevel;
+	private Thread t;
+	public static Context mContext;
+   	public static boolean rRun;
 	
 	//FUNCTIONS:
     @Override
@@ -44,7 +52,11 @@ public class KLService extends Service implements KeyListener {
 			Log.i(getClass().getSimpleName(), "AVIAD: Service created ...");
 		}
 		
-		  
+		//Init Required Members:
+		mContext = this;
+		
+		t = new Thread(r);
+	
 		//serviceStatus = true;
 		//We go to our logic stuff....
 		KLSlogic();
@@ -59,6 +71,9 @@ public class KLService extends Service implements KeyListener {
 		if (mDebugLevel > 0) {
 			Log.i(getClass().getSimpleName(), "AVIAD: Service destroyed ...");
 		}
+		
+		rRun = false;
+		
 		//serviceStatus = false;
 		//TO ANNOY>: Later ;) //////////////////////////////////////
 		//startService(new Intent(KLService.this, KLService.class));
@@ -98,7 +113,56 @@ public class KLService extends Service implements KeyListener {
 	
 	public void KLSlogic() {
     	//Logication ba-rosh...
-        SystemClock.sleep(1000);
+        //SystemClock.sleep(1000);
+		t.start();
+		
 	}
+	
+	final Handler handler = new Handler();
+    final Runnable r = new Runnable() {
+        public void run() {
+		    //Thread Run:
+        	//Prepare for a loop(Note to self: Andy requested this..)
+        	Looper.prepare();
+        	
+    		if (mDebugLevel  > 1) {
+    			Toast.makeText(mContext, "Http Thread Starting ...", Toast.LENGTH_LONG).show();
+    		}
+    		if (mDebugLevel > 0) {
+    			Log.i(getClass().getSimpleName(), "AVIAD: Http Thread Starting ...");
+    		}
+        	
+        	//Since stop() was deprecated we use the old flag approach:
+        	rRun = true;
+        	while (rRun) {
+        		if (mDebugLevel  > 1) {
+        			Toast.makeText(mContext, "Http Thread Running ...", Toast.LENGTH_LONG).show();
+        		}
+        		if (mDebugLevel > 0) {
+        			Log.i(getClass().getSimpleName(), "AVIAD: Http Thread Running ...");
+        		}
+        		
+        		//Start Thread Main Code:
+        		
+        		
+        		//END Thread Main Code.
+        		
+        		//Rest for a while
+	        	SystemClock.sleep(10000);
+        	}
+        	
+        	//Thread Stopped Code:
+    		if (mDebugLevel  > 1) {
+    			Toast.makeText(mContext, "Http Thread Stopping ...", Toast.LENGTH_LONG).show();
+    		}
+    		if (mDebugLevel > 0) {
+    			Log.i(getClass().getSimpleName(), "AVIAD: Http Thread Stopped ...");
+    		}
+        	
+		}
+        //handler.postDelayed(r, 10*600);
+     };
+
+    
 }
 
