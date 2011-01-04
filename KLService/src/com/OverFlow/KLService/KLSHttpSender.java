@@ -64,7 +64,7 @@ public class KLSHttpSender {
     		if (mDebugLevel > 1) {
     			Log.i(getClass().getSimpleName(), "AVIAD: Response: " + response.toString());
     		}
-		} 
+		}
 		catch(URISyntaxException e) {
     		if (mDebugLevel > 0) {
     			Log.e(getClass().getSimpleName(), "AVIAD: " + e.getMessage());
