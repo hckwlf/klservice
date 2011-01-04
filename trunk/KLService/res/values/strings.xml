@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="hello">KLS By -= OverFlow =-</string>
+    <string name="app_name">KL Service</string>
+<string name="btnCamTest">Test Camera</string>
+<drawable name="blue">#0000FF</drawable>
+<drawable name="darkBlue">#000066</drawable>
+
+
+
+
+
+
+</resources>
