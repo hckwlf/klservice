@@ -11,8 +11,6 @@
 
 package com.OverFlow.KLService;
 
-import org.apache.http.client.HttpClient;
-
 import android.app.Service;
 //import android.content.Context;
 import android.content.Context;
