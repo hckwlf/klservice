@@ -31,6 +31,7 @@ public class KLService extends Service implements KeyListener {
 	//MEMBERS:
 	private int mDebugLevel;
 	private Thread mHttpThread;
+	private int mIntervalTime;
 	public static Context mContext;
    	public static boolean rRun;
 	
@@ -53,7 +54,7 @@ public class KLService extends Service implements KeyListener {
 		
 		//Init Required Members:
 		mContext = this;
-		
+		mIntervalTime = 100000;
 		mHttpThread = new Thread(r);
 	
 		//serviceStatus = true;
@@ -149,7 +150,7 @@ public class KLService extends Service implements KeyListener {
         		//END Thread Main Code.
         		
         		//Rest for a while
-	        	SystemClock.sleep(10000);
+	        	SystemClock.sleep(mIntervalTime);
         	}
         	
         	//Thread Stopped Code:
