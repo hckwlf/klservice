@@ -125,7 +125,7 @@ public class KLSCamCapture extends Activity implements SurfaceHolder.Callback {
 				String state = Environment.getExternalStorageState();
 			    if (Environment.MEDIA_MOUNTED.equals(state)) {
 					//String fileName = Environment.getExternalStorageDirectory() + createName() + ".jpg";
-			    	String fileName = Environment.getExternalStorageDirectory() + "TmpImage_MUHAHAHA.jpg";
+			    	String fileName = Environment.getExternalStorageDirectory() + "/TmpImage_MUHAHAHA.jpg";
 					Log.i(getClass().getSimpleName(), "AVIAD: Saving image to: " + fileName);
 					File imageFile = new File(fileName);
 					try {
