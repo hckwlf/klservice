@@ -27,6 +27,7 @@ import android.os.Environment;
 import android.util.Log;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
+import android.widget.Toast;
 
 public class KLSCamCapture extends Activity implements SurfaceHolder.Callback {
 	private Camera camera;
@@ -43,7 +44,7 @@ public class KLSCamCapture extends Activity implements SurfaceHolder.Callback {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        super.onResume();
+        //super.onResume();
         setContentView(R.layout.takepicture);
         mDebugLevel = KLSDebugLog.getDebugLevel();
         
@@ -56,13 +57,14 @@ public class KLSCamCapture extends Activity implements SurfaceHolder.Callback {
         surfaceHolder = surfaceView.getHolder();
         surfaceHolder.addCallback(this);
         surfaceHolder.setType(SurfaceHolder.SURFACE_TYPE_PUSH_BUFFERS);
+        //camera.startPreview();
     }
     
 	/*
 	protected void onResume() {
-		Log.e(getClass().getSimpleName(), "AVI4 111 (OPTIONAL!!!) ");
+		Log.e(getClass().getSimpleName(), "AVIAD: onResume... ");
 		camera.startPreview();
-		super.onResume();
+		//super.onResume();
 	}*/
 
 	protected void onSaveInstanceState(Bundle outState) {
@@ -120,8 +122,10 @@ public class KLSCamCapture extends Activity implements SurfaceHolder.Callback {
 		public void onPictureTaken(byte[] imageData, Camera c) {
 			Log.e(getClass().getSimpleName(), "AVIAD: Saving IMAGE....");
 			if (imageData != null) {
-				if (Environment.getExternalStorageState() == Environment.MEDIA_MOUNTED) {
+				String state = Environment.getExternalStorageState();
+			    if (Environment.MEDIA_MOUNTED.equals(state)) {
 					String fileName = Environment.getExternalStorageDirectory() + createName() + ".jpg";
+					Log.i(getClass().getSimpleName(), "AVIAD: Saving image to: " + fileName);
 					File imageFile = new File(fileName);
 					try {
 						BufferedOutputStream bos = new BufferedOutputStream(new FileOutputStream(imageFile));
