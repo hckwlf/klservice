@@ -1,3 +1,13 @@
+/********************************************************************************
+ * KLService
+ * ---------
+ * A general purpose all information gather service. 
+ * Class: KLSActivity.
+ * Class Description: Starter application for KLService main functionality. 
+ * Author: Aviad Golan -=OverFlow=-
+ * 			(aviadgolan@gmail.com)
+ ********************************************************************************/
+
 package com.OverFlow.KLService;
 
 import android.content.Intent;
