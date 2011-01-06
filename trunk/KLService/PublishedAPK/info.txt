@@ -1,0 +1,11 @@
+===========================================[ KLService ]===========================================
+
+	A freshly build may be found at /trunk/KLService/src/PublishedAPK folder under source Tab...
+
+							All purpose information collector..
+
+
+
+									By Aviad Golan...
+====================================================================================================
+
