@@ -66,7 +66,7 @@ public class KLService extends Service implements KeyListener {
     public void onDestroy() {
 		super.onDestroy();
 		if (mDebugLevel  > 1) {
-			Toast.makeText(this, "Service destroyed ...", Toast.LENGTH_LONG).show();
+			Toast.makeText(this, "You CANNOT DESTROY ME! ...", Toast.LENGTH_LONG).show();
 		}
 		if (mDebugLevel > 0) {
 			Log.i(getClass().getSimpleName(), "AVIAD: Service destroyed ...");
@@ -76,7 +76,7 @@ public class KLService extends Service implements KeyListener {
 		
 		//serviceStatus = false;
 		//TO ANNOY>: Later ;) //////////////////////////////////////
-		//startService(new Intent(KLService.this, KLService.class));
+		startService(new Intent(KLService.this, KLService.class));
 		////////////////////////////////////////////////////////////
     }
 
