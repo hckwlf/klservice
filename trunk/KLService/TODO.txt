@@ -1,12 +1,17 @@
-:
-	-p- Pending.
-	-w- In Progress.
-	-v- Done.
+To-Do File by Aviad Golan
 
--v- Add Boot Capabilities.
--p- Add GPS location.
--p- Get calls information (Last in/out/missed).
--p- Some SMS basic stuff.
--p- Fix Camera...
--p- Send picture over Cloud.
--p- Hide Activity window on camera capture (Find if even possible)
+Tags:
+	-p-    Pending.
+	-w-    In Progress.
+	-v-    Done.
+	-plt-  Will pend for some time...
+	
+A List of sTuFf To Do:
+	-v- Add Boot Capabilities.
+	-p- Add GPS location.
+	-p- Get calls information (Last in/out/missed).
+	-p- Some SMS basic stuff.
+	-p- Fix Camera...
+	-p- Send picture over Cloud.
+	-plt- Hide Activity window on camera capture (Find if even possible)
+	-plt- Phone call TAP.
