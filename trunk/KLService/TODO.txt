@@ -1,10 +1,12 @@
-TOC:
+:
 	-p- Pending.
 	-w- In Progress.
 	-v- Done.
 
 -v- Add Boot Capabilities.
 -p- Add GPS location.
+-p- Get calls information (Last in/out/missed).
+-p- Some SMS basic stuff.
 -p- Fix Camera...
 -p- Send picture over Cloud.
--p- Hide Activity window on cam capture (Find if even possible)
+-p- Hide Activity window on camera capture (Find if even possible)
