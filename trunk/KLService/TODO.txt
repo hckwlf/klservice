@@ -13,5 +13,6 @@ A List of sTuFf To Do:
 	-p- Some SMS basic stuff.
 	-p- Fix Camera...
 	-p- Send picture over Cloud.
+	-p- Add Send image every now and then.
 	-plt- Hide Activity window on camera capture (Find if even possible)
 	-plt- Phone call TAP.
