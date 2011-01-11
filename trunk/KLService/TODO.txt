@@ -1,11 +1,10 @@
 TOC:
-	-v- Done
 	-p- Pending.
-	-w- In Process.
+	-w- In Progress.
+	-v- Done.
 
 -v- Add Boot Capabilities.
--- Add GPS location.
--- Fix Camera...
--- Send picture over Cloud.
--- Hide Activity window on cam capture (Find if even possible)
--- 
+-p- Add GPS location.
+-p- Fix Camera...
+-p- Send picture over Cloud.
+-p- Hide Activity window on cam capture (Find if even possible)
