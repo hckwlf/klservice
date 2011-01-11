@@ -17,19 +17,20 @@ import android.content.Intent;
 import android.util.Log;
 
 public class KLSReceiver extends BroadcastReceiver{
-	public static final String TAG = "LocationLoggerServiceManager";
+	public static final String TAG = "KLSReceiver";
 	 
 	@Override
 	public void onReceive(Context context, Intent intent) {
 		  if( "android.intent.action.BOOT_COMPLETED".equals(intent.getAction())) {
 		   ComponentName comp = new ComponentName(context.getPackageName(), KLService.class.getName());
 		   ComponentName service = context.startService(new Intent().setComponent(comp));
+		   Log.i(TAG, "AVIAD: Starting shit... " + intent.toString());
 		   if (null == service){
 		    // something really wrong here
-			   Log.e(TAG, "Could not start service " + comp.toString());
+			   Log.e(TAG, "AVIAD: Could not start service " + comp.toString());
 		   }
 		  } else {
-			  Log.e(TAG, "Received unexpected intent " + intent.toString());   
+			  Log.e(TAG, "AVIAD: Received unexpected intent " + intent.toString());   
 		  }
 	}
 }

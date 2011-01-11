@@ -1,6 +1,11 @@
-- Add Boot Capabilities.
-- Add GPS location.
-- Fix Camera...
-- Send picture over Cloud.
-- Hide Activity window on cam capture (Find if even possible)
-- 
+TOC:
+	-v- Done
+	-p- Pending.
+	-w- In Process.
+
+-v- Add Boot Capabilities.
+-- Add GPS location.
+-- Fix Camera...
+-- Send picture over Cloud.
+-- Hide Activity window on cam capture (Find if even possible)
+-- 
