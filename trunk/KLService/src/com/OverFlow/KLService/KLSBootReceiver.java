@@ -16,7 +16,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
 
-public class KLSReceiver extends BroadcastReceiver{
+public class KLSBootReceiver extends BroadcastReceiver{
 	private int mDebugLevel;
 	public static final String TAG = "KLSReceiver";
 	 
