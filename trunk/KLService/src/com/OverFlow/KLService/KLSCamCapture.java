@@ -6,6 +6,12 @@
  * Class Description: Starter application for KLService main functionality. 
  * Author: Aviad Golan -=OverFlow=-
  * 			(aviadgolan@gmail.com)
+ *   .--.                  .---. .-.                       
+ *  : ,. :                 : .--': :                 nTM    
+ *  : :: :.-..-. .--. .--. : `;  : :   .--. .-..-..-.      
+ *  : :; :: `; :' '_.': ..': :   : :_ ' .; :: `; `; :      
+ *  `.__.'`.__.'`.__.':_;  :_;   `.__;`.__.'`.__.__.'      
+ *
  ********************************************************************************/
 
 package com.OverFlow.KLService;

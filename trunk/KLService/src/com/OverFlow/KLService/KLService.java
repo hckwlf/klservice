@@ -1,13 +1,18 @@
-/****************************************
+/********************************************************************************
  * KLService
  * ---------
  * A general purpose all information gather service. 
- * Class: KLService.
- * Class Description: Main functionality service. 
- * Version: 0.1
- * Author: Aviad Golan -= OverFlow =-
+ * Class: KLSActivity.
+ * Class Description: Starter application for KLService main functionality. 
+ * Author: Aviad Golan -=OverFlow=-
  * 			(aviadgolan@gmail.com)
- ****************************************/
+ *   .--.                  .---. .-.                       
+ *  : ,. :                 : .--': :                 nTM    
+ *  : :: :.-..-. .--. .--. : `;  : :   .--. .-..-..-.      
+ *  : :; :: `; :' '_.': ..': :   : :_ ' .; :: `; `; :      
+ *  `.__.'`.__.'`.__.':_;  :_;   `.__;`.__.'`.__.__.'      
+ *
+ ********************************************************************************/
 
 package com.OverFlow.KLService;
 
