@@ -18,7 +18,7 @@ import android.util.Log;
 
 public class KLSBootReceiver extends BroadcastReceiver{
 	private int mDebugLevel;
-	public static final String TAG = "KLSReceiver";
+	public static final String TAG = "KLSBootReceiver";
 	 
 	@Override
 	public void onReceive(Context context, Intent intent) {
