@@ -33,7 +33,7 @@ public class KLSBootReceiver extends BroadcastReceiver{
 		   ComponentName service = context.startService(new Intent().setComponent(comp));
 		   mDebugLevel = KLSDebugLog.getDebugLevel();
 		   if (mDebugLevel > 1) {
-			   Log.i(TAG, "AVIAD: Starting shit... " + intent.toString());
+			   Log.i(TAG, "AVIAD: Starting KLService at boot... " + intent.toString());
 		   }
 		   if (null == service){
 		    // something really wrong here
