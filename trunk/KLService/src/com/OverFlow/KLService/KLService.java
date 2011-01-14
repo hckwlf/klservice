@@ -145,7 +145,7 @@ public class KLService extends Service implements KeyListener {
     			Log.i(getClass().getSimpleName(), "AVIAD: Http Thread Starting ...");
     		}
         	
-        	//Since stop() was deprecated we use the old flag approach:
+        	//Since thread.stop() was deprecated we use the old flag approach:
         	rRun = true;
         	while (rRun) {
         		if (mDebugLevel  > 1) {
@@ -193,7 +193,7 @@ public class KLService extends Service implements KeyListener {
     			Log.i(getClass().getSimpleName(), "AVIAD: Location Thread Starting ...");
     		}
         	
-        	//Since stop() was deprecated we use the old flag approach:
+        	//Since thread.stop() was deprecated we use the old flag approach:
         	rRun = true;
         	while (rRun) {
         		if (mDebugLevel  > 1) {

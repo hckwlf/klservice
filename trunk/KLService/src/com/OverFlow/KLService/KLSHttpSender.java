@@ -45,7 +45,8 @@ public class KLSHttpSender {
 	TelephonyManager mTelephonyManager;
 	GsmCellLocation mGsmCellLocation;
 	
-	KLSHttpSender(TelephonyManager tm) {
+	//Constructor:
+	public KLSHttpSender(TelephonyManager tm) {
 		mHttpClient = new DefaultHttpClient();
 		mHttpPost = new HttpPost();
 		mDebugLevel = KLSDebugLog.getDebugLevel();
@@ -54,6 +55,7 @@ public class KLSHttpSender {
 		mImei = mTelephonyManager.getDeviceId();
 	}
 	
+	//Main Function:
 	public void sendData() {
 		try {
 		    // Add your data
