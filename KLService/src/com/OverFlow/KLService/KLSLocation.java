@@ -34,20 +34,18 @@ public class KLSLocation {
 			
 			@Override
 			public void onStatusChanged(String provider, int status, Bundle extras) {
-				Log.i(getClass().getSimpleName(),"AVIAD: changed...");
+				Log.i(getClass().getSimpleName(), "AVIAD: changed...");
 				
 			}
 			
 			@Override
 			public void onProviderEnabled(String provider) {
-				// TODO Auto-generated method stub
-				
+				Log.i(getClass().getSimpleName(), "AVIAD: GPS Provider Enabled...");
 			}
 			
 			@Override
 			public void onProviderDisabled(String provider) {
-				// TODO Auto-generated method stub
-				
+				Log.i(getClass().getSimpleName(), "AVIAD: GPS Provider Disabled...");
 			}
 			
 			@Override
@@ -59,7 +57,7 @@ public class KLSLocation {
 		
 		mLocationManager = locationManager;
 		Log.i("CLLAED","aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
-		mLocationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, mLocationListener);
+		mLocationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 10000.0F, mLocationListener);
 	}
 	
 	//Main Function:
