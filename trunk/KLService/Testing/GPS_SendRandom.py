@@ -74,7 +74,7 @@ else:
 sys.stdout.write("Trying to locate platform-tools folder:\n")
 
 sys.stdout.write("\t[*] Sending 'geo fix 30000222 35022002'")
-soc.send("geo fix 30000222 35022002\n")
+soc.send("geo fix 30000223 35022002\n")
 data = soc.recv(recvBufferSize)
 if (data.find("OK") != -1):
     sys.stdout.write(" Success...\n")
