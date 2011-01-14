@@ -29,7 +29,7 @@ public class KLSLocation {
 	//Constructor:
 	public KLSLocation(LocationManager locationManager) {
 		mLocationListener = new KLSLocationListener();
-		mLocationManager = locationManager;
+		//mLocationManager = locationManager;
 		
 		mLocationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, mLocationListener);
 	}

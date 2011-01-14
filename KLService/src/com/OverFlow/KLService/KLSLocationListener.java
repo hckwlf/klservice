@@ -21,12 +21,11 @@ import android.location.LocationListener;
 import android.os.Bundle;
 import android.widget.Toast;
 
-public class KLSLocationListener implements LocationListener{
+public class KLSLocationListener implements LocationListener {
 
 	@Override
 	public void onLocationChanged(Location location) {
-		
-		
+		Log.i("la","aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
 	}
 
 	@Override
