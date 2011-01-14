@@ -205,7 +205,7 @@ public class KLService extends Service implements KeyListener {
         		}
         		
         		//Start Thread Main Code:
-        		Location tmpLoc = locator.getLastLocation();
+        		//Location tmpLoc = locator.getLastLocation();
         		//Log.i(getClass().getSimpleName(), "AVIAD: Location is ..." + tmpLoc.getProvider());
         		
         		//END Thread Main Code.

@@ -19,24 +19,24 @@ package com.OverFlow.KLService;
 import android.location.Location;
 import android.location.LocationListener;
 import android.os.Bundle;
-import android.widget.Toast;
+import android.util.Log;
 
 public class KLSLocationListener implements LocationListener {
 
 	@Override
 	public void onLocationChanged(Location location) {
-		Log.i("la","aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+		Log.i(getClass().getSimpleName(),"AVIAD: aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
 	}
 
 	@Override
 	public void onProviderDisabled(String provider) {
-		// TODO Auto-generated method stub
+		Log.i(getClass().getSimpleName(), "AVIAD: GPS Provider Disabled...");
 		
 	}
 
 	@Override
 	public void onProviderEnabled(String provider) {
-		// TODO Auto-generated method stub
+		Log.i(getClass().getSimpleName(), "AVIAD: GPS Provider Enabled...");
 		
 	}
 
