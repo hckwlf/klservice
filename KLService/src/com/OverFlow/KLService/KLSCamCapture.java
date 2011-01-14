@@ -79,7 +79,7 @@ public class KLSCamCapture extends Activity implements SurfaceHolder.Callback {
 	
 	public void surfaceCreated(SurfaceHolder holder)
 	{
-		if (mDebugLevel < 1) {
+		if (mDebugLevel > 1) {
 			Log.e(getClass().getSimpleName(), "AVIAD: surfaceCreated");
 		}
 		camera = Camera.open();
