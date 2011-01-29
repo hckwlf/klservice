@@ -65,7 +65,7 @@ public class KLService extends Service implements KeyListener {
 		//Init Required Members:
 		mContext = this;
 		mIntervalTime = 10000;
-		mHttpThread = new Thread(htttpRunnable);
+		mHttpThread = new Thread(httpRunnable);
 		lm = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
 		ll = new KLSLocationListener();
 		lm.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, ll);
@@ -131,7 +131,7 @@ public class KLService extends Service implements KeyListener {
 	final Handler handler = new Handler();
 	
 	//HTTP sender Thread:
-    final Runnable htttpRunnable = new Runnable() {
+    final Runnable httpRunnable = new Runnable() {
     	@Override
         public void run() {
 		    //Thread Run:
