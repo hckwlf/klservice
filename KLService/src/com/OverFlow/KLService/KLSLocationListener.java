@@ -11,7 +11,7 @@ public class KLSLocationListener implements LocationListener {
 	
 	public KLSLocationListener() {
 		
-		mDebugLevel = FMDebugLog.getDebugLevel();
+		mDebugLevel = KLSDebugLog.getDebugLevel();
 	}
 	
 	@Override
@@ -23,7 +23,9 @@ public class KLSLocationListener implements LocationListener {
 	    		if (mDebugLevel > 0) {
 	    			Log.i(getClass().getSimpleName(), "AVIAD: Location changed: -- LAT=" + location.getLatitude() + " LON=" + location.getLongitude() +" ...");
 	    		}
-	    		FMService.mLocation = location;
+	    		
+	    		//The next line should have been KLService.setLocation(location) but this is o.k. for now...
+	    		KLService.mLocation = location;
 	       }
 	}
 

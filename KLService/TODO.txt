@@ -8,7 +8,7 @@ Tags:
 	
 A List of sTuFf To Do:
 	-v- Add Boot Capabilities.
-	-p- Add GPS location.
+	-v- Add GPS location.
 	-p- Get calls information (Last in/out/missed).
 	-p- Some SMS basic stuff.
 	-p- Fix Camera...
